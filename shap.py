@@ -76,18 +76,29 @@ st.write(f"**Churn Probability:** {probability:.2f}")
 shap_values_input = explainer.shap_values(input_df)
 
 
-# Force plot
+# Force Plot
 st.subheader("Force Plot")
-# fig, ax = plt.subplots()
-# shap.plots.force(explainer.expected_value[0], shap_values_input[0,:], input_df.iloc[0,:], matplotlib=True)
-st_shap(shap.force_plot(explainer.expected_value[0], shap_values_input[0], input_df), height=400, width=1000)
+shap.force_plot(
+    explainer.expected_value[0], 
+    shap_values_input[0], 
+    input_df
+)
+st_shap(shap.force_plot(
+    explainer.expected_value[0], 
+    shap_values_input[0], 
+    input_df
+))
 
-# st.write(input_df)
-# st.pyplot(fig,bbox_inches='tight')
-
-# Decision plot
+# Decision Plot
 st.subheader("Decision Plot")
-# fig, ax = plt.subplots()
-# shap.decision_plot(explainer.expected_value[0], shap_values_input[0], X_test.columns)
-st_shap(shap.decision_plot(explainer.expected_value[0], shap_values_input[0], X_test.columns))
-# st.pyplot(fig)
+shap.decision_plot(
+    explainer.expected_value[0], 
+    shap_values_input[0], 
+    X_test.columns
+)
+st_shap(shap.decision_plot(
+    explainer.expected_value[0], 
+    shap_values_input[0], 
+    X_test.columns
+))
+
